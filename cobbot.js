@@ -124,12 +124,13 @@ bot.on('message', function (user, userID, channelID, message) {
     if (message.substring(0, 1) == '$') {
         var args2 = message.substring(1);
         var commandname2 = args2.split(' ')[0];
+        // var timestamp = args2.split(' ')[1];
         console.log(commandname2)
         switch (commandname2) {
 
             case 'pause':
-
-                exec('./autohotkey mpcopen.ahk', {
+            case 'play':
+                exec(`./autohotkey mpcplay.ahk`, {
                     // cwd: '/Cobbot/',
                     env: { PATH: 'C:\\cygwin\\bin\\bash.exe' },
                     shell: 'C:\\cygwin\\bin\\bash.exe'
@@ -137,7 +138,86 @@ bot.on('message', function (user, userID, channelID, message) {
                     function (err) {
                         if (err) console.log('error', err);
                     })
-            break;
+                break;
+                
+            case 'goto':
+                var timestamp = args2.split(' ')[1];
+                exec(`./autohotkey mpcgoto.ahk ${timestamp}`, {
+                    // cwd: '/Cobbot/',
+                    env: { PATH: 'C:\\cygwin\\bin\\bash.exe' },
+                    shell: 'C:\\cygwin\\bin\\bash.exe'
+                },
+                    function (err) {
+                        if (err) console.log('error', err);
+                    })
+                break;
+            case 'fs':
+            case 'full screen':    
+                var timestamp = args2.split(' ')[1];
+                exec(`./autohotkey mpcfullscreen.ahk`, {
+                    // cwd: '/Cobbot/',
+                    env: { PATH: 'C:\\cygwin\\bin\\bash.exe' },
+                    shell: 'C:\\cygwin\\bin\\bash.exe'
+                },
+                    function (err) {
+                        if (err) console.log('error', err);
+                    })
+                break;
+            case 'volup':
+                var timestamp = args2.split(' ')[1];
+                exec(`./autohotkey mpcvolup.ahk`, {
+                    // cwd: '/Cobbot/',
+                    env: { PATH: 'C:\\cygwin\\bin\\bash.exe' },
+                    shell: 'C:\\cygwin\\bin\\bash.exe'
+                },
+                    function (err) {
+                        if (err) console.log('error', err);
+                    })
+                break;
+            case 'voldown':
+                var timestamp = args2.split(' ')[1];
+                exec(`./autohotkey mpcvoldown.ahk`, {
+                    // cwd: '/Cobbot/',
+                    env: { PATH: 'C:\\cygwin\\bin\\bash.exe' },
+                    shell: 'C:\\cygwin\\bin\\bash.exe'
+                },
+                    function (err) {
+                        if (err) console.log('error', err);
+                    })
+                break;
+            case 'sub':
+                var timestamp = args2.split(' ')[1];
+                exec(`./autohotkey mpcsubtoggle.ahk`, {
+                    // cwd: '/Cobbot/',
+                    env: { PATH: 'C:\\cygwin\\bin\\bash.exe' },
+                    shell: 'C:\\cygwin\\bin\\bash.exe'
+                },
+                    function (err) {
+                        if (err) console.log('error', err);
+                    })
+                break;
+            case 'subchange':
+                var timestamp = args2.split(' ')[1];
+                exec(`./autohotkey mpcsubchange.ahk`, {
+                    // cwd: '/Cobbot/',
+                    env: { PATH: 'C:\\cygwin\\bin\\bash.exe' },
+                    shell: 'C:\\cygwin\\bin\\bash.exe'
+                },
+                    function (err) {
+                        if (err) console.log('error', err);
+                    })
+                break;
+            case 'audiochange':
+                var timestamp = args2.split(' ')[1];
+                exec(`./autohotkey mpcaudiochange.ahk`, {
+                    // cwd: '/Cobbot/',
+                    env: { PATH: 'C:\\cygwin\\bin\\bash.exe' },
+                    shell: 'C:\\cygwin\\bin\\bash.exe'
+                },
+                    function (err) {
+                        if (err) console.log('error', err);
+                    })
+                break;
         }
     }                
 });
