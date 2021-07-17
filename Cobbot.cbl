@@ -276,11 +276,9 @@
            WHEN "WHAT"
                PERFORM WhatCommand
            END-EVALUATE
-      *    MOVE FullMovie TO TallyMovie
-      *    DISPLAY "TallyMovie: " Tallymovie
-      *    DISPLAY "Strg Size:" StrgSize
-      *    CALL 'MovieTally' USING TallyMovie
-      *    END-CALL
+           MOVE FullMovie TO TallyMovie
+           CALL 'MovieTally' USING TallyMovie
+           END-CALL
            CLOSE ReadFile
            STOP RUN.
            RollDice.
