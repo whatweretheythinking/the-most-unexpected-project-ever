@@ -9,6 +9,8 @@
                    ORGANIZATION IS LINE SEQUENTIAL.
                SELECT RequestFile ASSIGN TO "MovieRequests.txt"
                    ORGANIZATION IS LINE SEQUENTIAL.
+               SELECT WhatFile ASSIGN TO "WhatsPlaying.txt"
+                   ORGANIZATION IS LINE SEQUENTIAL.    
            DATA DIVISION.
            FILE SECTION.
            FD ReadFile.
@@ -19,6 +21,8 @@
                01 OutString                PIC X(150).
            FD RequestFile.
                01 Request                  PIC X(100).
+           FD WhatFile.
+               01 WhatString               PIC X(100).    
            WORKING-STORAGE SECTION.
       *    COPY RandMovie.cpy
            01 SuggestionTable                  IS GLOBAL.
@@ -176,7 +180,16 @@
                02 Filler               PIC X(13) VALUE "Now Playing: ".
                02 FILLER               PIC X VALUE '`'.
                02 PrnTitle               PIC X(50).
-               02 FILLER               PIC X VALUE '`'.    
+               02 FILLER               PIC X VALUE '`'.
+           01 PrnWant1.
+               02 FILLER             PIC X(16) VALUE "Requested File: ".
+           01 PrnWantTitle.
+               02 FILLER               PIC X VALUE '`'.
+               02 PrnWantName          PIC X(50).
+               02 FILLER               PIC X VALUE '`'.
+           01 PrnWant2.
+               02  FILLER              PIC X(24) VALUE "Added to list".
+
            01 Counters.
                02 Idx                      PIC 999.
                02 Tidx                     PIC 999.
@@ -249,7 +262,7 @@
                02 HoldOut                  PIC X(150).
            01 Whatcheck.
                02 FILLER               PIC X(13) VALUE "Now Playing: ".
-               02 Playing              PIC X(52).    
+               02 Playing              PIC X(53).    
            01 TallyMovie                   PIC X(80).  
            PROCEDURE DIVISION.
            OPEN INPUT ReadFile
@@ -300,14 +313,15 @@
            
            SelectMovie.
            PERFORM GetMovieName
-           Call "SYSTEM" USING MoviePathRec
-           END-Call
+      *    Call "SYSTEM" USING MoviePathRec
+      *    END-Call
            DISPLAY FullMovie
            MOVE FullMovie TO PrnTitle
            DISPLAY Prntitle
-           OPEN OUTPUT WriteFile
+           OPEN OUTPUT WriteFile, WhatFile
            WRITE Outstring FROM PrnMovieName
-           CLOSE WriteFile.
+           WRITE WhatString FROM PrnMovieName
+           CLOSE WriteFile, WhatFile.
 
            GetMovieName.
            DISPLAY "Instring: " Instring
@@ -357,10 +371,11 @@
            DISPLAY "Full Show Path: " ShowPathRec
            CALL "SYSTEM" USING ShowPathRec
            END-CALL
-           OPEN OUTPUT WriteFile
+           OPEN OUTPUT WriteFile, WhatFIle
            MOVE FullShow TO PrnTitle
            WRITE OutString FROM PrnMovieName
-           CLOSE WriteFile.
+           WRITE WhatString FROM PrnMovieName
+           CLOSE WriteFile, WhatFile.
            
            GetJoeBob.
                DISPLAY "Instring: " Instring
@@ -400,6 +415,7 @@
            DISPLAY "Full Show Path: " JoebobPathRec.
            CALL "SYSTEM" USING JoebobPathRec
            END-CALL.
+
            SelectRandomMovie.
            DISPLAY "In Random"
            COMPUTE MovieRand = FUNCTION RANDOM * (MovieMod - 
@@ -412,16 +428,21 @@
           
            CALL "SYSTEM" USING MoviePathRec
            END-CALL
-           OPEN OUTPUT WriteFile
+           OPEN OUTPUT WriteFile, WhatFile
            WRITE OutString FROM PrintRandom
            WRITE OutString FROM PrintComment
-           CLOSE WriteFile.
+           WRITE WhatString FROM PrintRandom
+           CLOSE WriteFile, WhatFile.
 
            WriteRequest.
            OPEN EXTEND RequestFile
-           DISPLAY InString
+           OPEN OUTPUT WriteFile
            WRITE Request FROM Instring
-           CLOSE RequestFile.
+           MOVE InString TO PrnWantName
+           WRITE OutString FROM PrnWant1
+           WRITE OutString FROM PrnWantTitle
+           WRITE OutString FROM PrnWant2
+           CLOSE RequestFile, WriteFile.
 
            SuggestMovie.
            DISPLAY "InSugg"
@@ -442,15 +463,14 @@
            CLOSE WriteFile.
 
            WhatCommand.
-           OPEN INPUT WriteFile
-           READ WriteFile
-           MOVE Outstring TO HoldOut
+           OPEN INPUT WhatFile
+           READ WhatFile
+           MOVE WhatString TO HoldOut
            DISPLAY "HOldout:  " Holdout
            MOVE  HoldOut(14 : ) TO Playing
            DISPLAY "What Check: " Whatcheck
-           CLOSE WriteFile
            OPEN OUTPUT WriteFile
            WRITE OutSTring FROM WhatCheck
-           CLOSE WriteFile.
+           CLOSE WriteFile, WhatFile.
 
            
