@@ -610,49 +610,49 @@
                   "Willow 1988".
                  03 Filler PIC X(60) VALUE
                   "Willy Wonka & the Chocolate Factory 1971".
-                   03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "The Odyssey 1997".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "The Big Lebowski 1998".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Castle In the Sky 1989".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Children of the Corn 1984".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Happy Gilmore 1996".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Kiki's Delivery Service 1989".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Office Space 1999".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Wayne's World 1992".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Bloody Birthday 1981".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Gymkata 1985".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Home Alone 1990".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Killer Party 1986".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Slaughter High 1986".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Raiders of the Lost Ark 1981".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Indiana Jones and the Temple of Doom 1984".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Friday the 13th Part 2 1981".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Sudden Death 1995".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Porco Rosso 1992".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Princess Mononoke 1997".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Spirited Away 2001".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Howl's Moving Castle 2004".
-                  03 Filler PIC X(60) VALUE
+                 03 Filler PIC X(60) VALUE
                   "Evil Dead Trap(shiryo no wana) 1988".
 
 
