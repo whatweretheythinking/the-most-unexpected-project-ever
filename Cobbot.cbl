@@ -313,8 +313,8 @@
            
            SelectMovie.
            PERFORM GetMovieName
-      *    Call "SYSTEM" USING MoviePathRec
-      *    END-Call
+           Call "SYSTEM" USING MoviePathRec
+           END-Call
            DISPLAY FullMovie
            MOVE FullMovie TO PrnTitle
            DISPLAY Prntitle
