@@ -289,6 +289,7 @@
            WHEN "WHAT"
                PERFORM WhatCommand
            END-EVALUATE
+      *    Tallys the moveis that have been selected
            MOVE FullMovie TO TallyMovie
            CALL 'MovieTally' USING TallyMovie
            END-CALL
@@ -348,18 +349,18 @@
            COMPUTE StrgSize = (70 - CharCount)
            DISPLAY "ShowName: " InString (1 :Strgsize - 7) '!'
                MOVE InString (1 : Strgsize - 7) TO HoldShowTitle.
+      *    Expand Season into full text    
            MOVE Instring(Strgsize - 5: 6) TO SeEp 
                DISPLAY "Seep: " SeEp         
            UNSTRING SeEp DELIMITED BY 'e'
                Into ShowSeason
            MOVE ShowSeason(2 : ) TO SeasonNum
-      *    MOVE Instring (StrgSize - 2 :3) TO ShowExtension
-      *    DISPLAY "Show ext: " ShowExtension
            SET Sidx TO 1
            SEARCH Season
                    WHEN Sidx = Seasonnum
                        Move Season(Sidx) TO FullSeason
            END-SEARCH
+      *    Get string length for proper file path
            MOVE 0 TO CharCount  
            INSPECT FUNCTION REVERSE(HoldShowTitle) TALLYING CharCount
                                            FOR LEADING SPACES                              
@@ -368,28 +369,26 @@
                                    HoldShowTitle(1 : StrgSize), " - "
                                    , SeEp,'.mkv"'
                INTO FULLSHOW
-           DISPLAY "Full Show Path: " ShowPathRec
+      *    Calls system to Start media Player    
            CALL "SYSTEM" USING ShowPathRec
            END-CALL
            OPEN OUTPUT WriteFile, WhatFIle
+      *    Writes message to display what is being shown and stores it
+      *    for future reference for the WHAT command
            MOVE FullShow TO PrnTitle
            WRITE OutString FROM PrnMovieName
            WRITE WhatString FROM PrnMovieName
            CLOSE WriteFile, WhatFile.
            
            GetJoeBob.
-               DISPLAY "Instring: " Instring
       *        Seperating show name from episode request
            INSPECT FUNCTION REVERSE(InString) TALLYING CharCount
                                FOR LEADING SPACES                 
            COMPUTE StrgSize = (70 - CharCount)
-           DISPLAY "ShowName: " InString (1:Strgsize) '!'
                MOVE InString (1:Strgsize) TO SeEp
-           DISPLAY "Seep " Seep 
            UNSTRING SeEp DELIMITED BY 'e'
                INTO ShowSeason
            MOVE ShowSeason(2 : ) TO SeasonNum
-           DISPLAY "Season Num: " SeasonNum
            SET Sidx TO 1
            SEARCH Season
                    WHEN Sidx = SeasonNum
@@ -412,9 +411,14 @@
                            , SeEp, " - ", HoldJname(1 : JstrgSize), 
                            '.mkv"'
                INTO JoebobT
+               MOVE HoldJName TO PrnTitle
            DISPLAY "Full Show Path: " JoebobPathRec.
            CALL "SYSTEM" USING JoebobPathRec
-           END-CALL.
+           END-CALL
+           OPEN OUTPUT WriteFile, WhatFile
+           Write OutString FROM PRNMOVIENAME
+           WRITE WhatString FROM PrnMovieName
+           Close WriteFile, WhatFile.
 
            SelectRandomMovie.
            DISPLAY "In Random"
