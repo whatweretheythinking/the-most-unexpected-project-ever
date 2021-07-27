@@ -114,6 +114,15 @@ bot.on('message', function (user, userID, channelID, message) {
                                 });
                                 console.log(cobolresult)
                                 break;
+                            case 'jbob':
+
+                                bot.sendMessage({
+                                    to: channelID,
+                                    message: cobolresult
+
+                                });
+                                console.log(cobolresult)
+                                break;
                         }
                     });
                 });
@@ -139,7 +148,7 @@ bot.on('message', function (user, userID, channelID, message) {
                         if (err) console.log('error', err);
                     })
                 break;
-                
+
             case 'goto':
                 var timestamp = args2.split(' ')[1];
                 exec(`./autohotkey mpcgoto.ahk ${timestamp}`, {
@@ -152,7 +161,7 @@ bot.on('message', function (user, userID, channelID, message) {
                     })
                 break;
             case 'fs':
-            case 'full screen':    
+            case 'full screen':
                 var timestamp = args2.split(' ')[1];
                 exec(`./autohotkey mpcfullscreen.ahk`, {
                     // cwd: '/Cobbot/',
@@ -219,5 +228,5 @@ bot.on('message', function (user, userID, channelID, message) {
                     })
                 break;
         }
-    }                
+    }
 });
