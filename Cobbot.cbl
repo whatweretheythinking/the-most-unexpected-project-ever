@@ -53,109 +53,109 @@
                 
            01 JoeBobTable.
                02 EpisodeNames.
-               03 FILLER PIC X(49) VALUE "s01e01Tourist Trap".
-               03 FILLER PIC X(49) VALUE "s01e02Sleepaway Camp".
-               03 FILLER PIC X(49) VALUE "s01e03Rabid".
-               03 FILLER PIC X(49) VALUE "s01e04The Prowler".
+               03 FILLER PIC X(49) VALUE "S01E01Tourist Trap".
+               03 FILLER PIC X(49) VALUE "S01E02Sleepaway Camp".
+               03 FILLER PIC X(49) VALUE "S01E03Rabid".
+               03 FILLER PIC X(49) VALUE "S01E04The Prowler".
                03 FILLER PIC X(49) 
-              VALUE "s01e05Sorority Babes in the Slimeball Bowl-O-Rama".
-               03 FILLER PIC X(49) VALUE "s01e06Daughters of Darkness".
-               03 FILLER PIC X(49) VALUE "s01e07Blood Feast".
-               03 FILLER PIC X(49) VALUE "s01e08Basket Case".
-               03 FILLER PIC X(49) VALUE "s01e09Re-Animator".
-               03 FILLER PIC X(49) VALUE "s01e10Demons".
-               03 FILLER PIC X(49) VALUE "s01e11Legend of Boggy Creek".
-               03 FILLER PIC X(49) VALUE "s01e12Hellraiser".
-               03 FILLER PIC X(49) VALUE "s01e13Pieces".
+              VALUE "S01E05Sorority Babes in the Slimeball Bowl-O-Rama".
+               03 FILLER PIC X(49) VALUE "S01E06Daughters of Darkness".
+               03 FILLER PIC X(49) VALUE "S01E07Blood Feast".
+               03 FILLER PIC X(49) VALUE "S01E08Basket Case".
+               03 FILLER PIC X(49) VALUE "S01E09Re-Animator".
+               03 FILLER PIC X(49) VALUE "S01E10Demons".
+               03 FILLER PIC X(49) VALUE "S01E11Legend of Boggy Creek".
+               03 FILLER PIC X(49) VALUE "S01E12Hellraiser".
+               03 FILLER PIC X(49) VALUE "S01E13Pieces".
                03 FILLER PIC X(49) VALUE 
-                   "s02e01The Texas Chainsaw Massacre".
-               03 FILLER PIC X(49) VALUE "s02e02The Hills Have Eyes".
-               03 FILLER PIC X(49) VALUE "s02e03Dead or Alive".
-               03 FILLER PIC X(49) VALUE "s02e04Blood Rage".    
-               03 FILLER PIC X(49) VALUE "s03e01Phantasm".
-               03 FILLER PIC X(49) VALUE "s03e02Phantasm III".
-               03 FILLER PIC X(49) VALUE "s03e03Phantasm IV".
-               03 FILLER PIC X(49) VALUE "s03e04Phantasm Ravager".
-               03 FILLER PIC X(49) VALUE "s04e01C.H.U.D".
-               03 FILLER PIC X(49) VALUE "s04e02Castle Freak".
-               03 FILLER PIC X(49) VALUE "s04e03Q: The Winged Serpent".
-               03 FILLER PIC X(49) VALUE "s04e04Society".
-               03 FILLER PIC X(49) VALUE "s04e05Deathgasm".
-               03 FILLER PIC X(49) VALUE "s04e06The Changeling".
-               03 FILLER PIC X(49) VALUE "s04e07Madman".
+                   "S02E01The Texas Chainsaw Massacre".
+               03 FILLER PIC X(49) VALUE "S02E02The Hills Have Eyes".
+               03 FILLER PIC X(49) VALUE "S02E03Dead or Alive".
+               03 FILLER PIC X(49) VALUE "S02E04Blood Rage".    
+               03 FILLER PIC X(49) VALUE "S03E01Phantasm".
+               03 FILLER PIC X(49) VALUE "S03E02Phantasm III".
+               03 FILLER PIC X(49) VALUE "S03E03Phantasm IV".
+               03 FILLER PIC X(49) VALUE "S03E04Phantasm Ravager".
+               03 FILLER PIC X(49) VALUE "S04E01C.H.U.D".
+               03 FILLER PIC X(49) VALUE "S04E02Castle Freak".
+               03 FILLER PIC X(49) VALUE "S04E03Q: The Winged Serpent".
+               03 FILLER PIC X(49) VALUE "S04E04Society".
+               03 FILLER PIC X(49) VALUE "S04E05Deathgasm".
+               03 FILLER PIC X(49) VALUE "S04E06The Changeling".
+               03 FILLER PIC X(49) VALUE "S04E07Madman".
                03 FILLER PIC X(49) VALUE 
-                       "s04e08Wolfguy - Enranged Lycanthrope".
-               03 FILLER PIC X(49) VALUE "s04e09Demon Wind".
-               03 FILLER PIC X(49) VALUE "s04e10House of the Devil".
-               03 FILLER PIC X(49) VALUE "s04e11WolfCop".
+                       "S04E08Wolfguy - Enranged Lycanthrope".
+               03 FILLER PIC X(49) VALUE "S04E09Demon Wind".
+               03 FILLER PIC X(49) VALUE "S04E10House of the Devil".
+               03 FILLER PIC X(49) VALUE "S04E11WolfCop".
                03 FILLER PIC X(49) VALUE 
-                       "s04e12Henry Portrait of a Serial Killer".        
-               03 FILLER PIC X(49) VALUE "s04e13Contamination".
+                       "S04E12Henry Portrait of a Serial Killer".        
+               03 FILLER PIC X(49) VALUE "S04E13Contamination".
                03 FILLER PIC X(49) VALUE 
-                   "s04e14A Girl Walks Home Along at Night".
-               03 FILLER PIC X(49) VALUE "s04e15The Stuff".
-               03 FILLER PIC X(49) VALUE "s04e16Street Trash".
-               03 FILLER PIC X(49) VALUE "s04e17Blood Harvest".
+                   "S04E14A Girl Walks Home Along at Night".
+               03 FILLER PIC X(49) VALUE "S04E15The Stuff".
+               03 FILLER PIC X(49) VALUE "S04E16Street Trash".
+               03 FILLER PIC X(49) VALUE "S04E17Blood Harvest".
                03 FILLER PIC X(49) VALUE 
-                       "s04e18Hello Mary Lou: Prom Night II".
-               03 FILLER PIC X(49) VALUE "s05e01Halloween".        
+                       "S04E18Hello Mary Lou: Prom Night II".
+               03 FILLER PIC X(49) VALUE "S05E01Halloween".        
                03 FILLER PIC X(49)
-                 VALUE "s05e02Halloween 4- The Return of Michael Myers".
+                 VALUE "S05E02Halloween 4- The Return of Michael Myers".
                03 FILLER PIC X(49) VALUE 
-                   "s05e03Halloween 5- The Curse of Michael Myers".
-               03 FILLER PIC X(49) VALUE "s06e01Black Christmas".
-               03 FILLER PIC X(49) VALUE "s06e02Jack Frost".
+                   "S05E03Halloween 5- The Curse of Michael Myers".
+               03 FILLER PIC X(49) VALUE "S06E01Black Christmas".
+               03 FILLER PIC X(49) VALUE "S06E02Jack Frost".
                03 FILLER PIC X(49) VALUE 
-                   "s06e03Silent Night Deadly Night Part 2".      
-               03 FILLER PIC X(49) VALUE "s07e01Chopping Mall".
-               03 FILLER PIC X(49) VALUE "s07e02Bloodsucking Freaks".
-               03 FILLER PIC X(49) VALUE "s07e03Maniac".
-               03 FILLER PIC X(49) VALUE "s07e04Heathers".
-               03 FILLER PIC X(49) VALUE "s07e05Brain Damage".
-               03 FILLER PIC X(49) VALUE "s07e06Deep Red".
-               03 FILLER PIC X(49) VALUE "s07e07Troma's War".
-               03 FILLER PIC X(49) VALUE "s07e08One Cut of the Dead".
-               03 FILLER PIC X(49) VALUE "s07e09The Exorcist III".
-               03 FILLER PIC X(49) VALUE "s07e10Deadbeat at Dawn".
-               03 FILLER PIC X(49) VALUE "s07e11Dead Heat".
-               03 FILLER PIC X(49) VALUE "s07e12Cannibal Holocaust".
-               03 FILLER PIC X(49) VALUE "s07e13Mayhen".
-               03 FILLER PIC X(49) VALUE "s07e14Tetsuo: The Iron Man".
-               03 FILLER PIC X(49) VALUE "s07e15Scare Package".
-               03 FILLER PIC X(49) VALUE "s07e16Hogzilla".
+                   "S06E03Silent Night Deadly Night Part 2".      
+               03 FILLER PIC X(49) VALUE "S07E01Chopping Mall".
+               03 FILLER PIC X(49) VALUE "S07E02Bloodsucking Freaks".
+               03 FILLER PIC X(49) VALUE "S07E03Maniac".
+               03 FILLER PIC X(49) VALUE "S07E04Heathers".
+               03 FILLER PIC X(49) VALUE "S07E05Brain Damage".
+               03 FILLER PIC X(49) VALUE "S07E06Deep Red".
+               03 FILLER PIC X(49) VALUE "S07E07Troma's War".
+               03 FILLER PIC X(49) VALUE "S07E08One Cut of the Dead".
+               03 FILLER PIC X(49) VALUE "S07E09The Exorcist III".
+               03 FILLER PIC X(49) VALUE "S07E10Deadbeat at Dawn".
+               03 FILLER PIC X(49) VALUE "S07E11Dead Heat".
+               03 FILLER PIC X(49) VALUE "S07E12Cannibal Holocaust".
+               03 FILLER PIC X(49) VALUE "S07E13Mayhen".
+               03 FILLER PIC X(49) VALUE "S07E14Tetsuo: The Iron Man".
+               03 FILLER PIC X(49) VALUE "S07E15Scare Package".
+               03 FILLER PIC X(49) VALUE "S07E16Hogzilla".
                03 FILLER PIC X(49) VALUE 
-                       "s07e17Hellbound: Hellraiser II".
-               03 FILLER PIC X(49) VALUE "s07e18Hell Comes to FrogTown".
+                       "S07E17Hellbound: Hellraiser II".
+               03 FILLER PIC X(49) VALUE "S07E18Hell Comes to FrogTown".
                03 FILLER PIC X(49) VALUE 
-                           "s07e19Slumber Party Massacre II".
-               03 FILLER PIC X(49) VALUE "s07e20Victor Crowley".                    
-               03 FILLER PIC X(49) VALUE "s08e01Haunt".
-               03 FILLER PIC X(49) VALUE "s08e02Hack-O-Lantern".
-               03 FILLER PIC X(49) VALUE "s09e01Deadly Games".
-               03 FILLER PIC X(49) VALUE "s09e02Christmas Evil".
-               03 FILLER PIC X(49) VALUE "s10e01Tammy and the T-Rex".
-               03 FILLER PIC X(49) VALUE "s10e02The Love Witch".
-               03 FILLER PIC X(49) VALUE "s11e01Mother's Day".
-               03 FILLER PIC X(49) VALUE "s11e02House by the Cemetary".
-               03 FILLER PIC X(49) VALUE "s11e03Audition".
-               03 FILLER PIC X(49) VALUE "s11e04Class of 1984".
-               03 FILLER PIC X(49) VALUE "s11e05Bride of Reanimator".
-               03 FILLER PIC X(49) VALUE "s11e06Next of Kin".
-               03 FILLER PIC X(49) VALUE "s11e07Ginger Snaps".
-               03 FILLER PIC X(49) VALUE "s11e08Fried Barry".
-               03 FILLER PIC X(49) VALUE "s11e09Mandy".
-               03 FILLER PIC X(49) VALUE "s11e10Dead and Buried".
-               03 FILLER PIC X(49) VALUE "s11e11Maniac Cop".
-               03 FILLER PIC X(49) VALUE "s11e12Maniac Cop 2".
-               03 FILLER PIC X(49) VALUE "s11e13Train to Busan".
-               03 FILLER PIC X(49) VALUE "s11e14Spookies".
-               03 FILLER PIC X(49) VALUE "s11e15SledgeHammer".
-               03 FILLER PIC X(49) VALUE "s11e16Things".
-               03 FILLER PIC X(49) VALUE "s11e17EvilSpeak".
-               03 FILLER PIC X(49) VALUE "s11e18Day of the Beast".
-               03 FILLER PIC X(49) VALUE "s11e19Little Shop of Horrors".
+                           "S07E19Slumber Party Massacre II".
+               03 FILLER PIC X(49) VALUE "S07E20Victor Crowley".                    
+               03 FILLER PIC X(49) VALUE "S08E01Haunt".
+               03 FILLER PIC X(49) VALUE "S08E02Hack-O-Lantern".
+               03 FILLER PIC X(49) VALUE "S09E01Deadly Games".
+               03 FILLER PIC X(49) VALUE "S09E02Christmas Evil".
+               03 FILLER PIC X(49) VALUE "S10E01Tammy and the T-Rex".
+               03 FILLER PIC X(49) VALUE "S10E02The Love Witch".
+               03 FILLER PIC X(49) VALUE "S11E01Mother's Day".
+               03 FILLER PIC X(49) VALUE "S11E02House by the Cemetary".
+               03 FILLER PIC X(49) VALUE "S11E03Audition".
+               03 FILLER PIC X(49) VALUE "S11E04Class of 1984".
+               03 FILLER PIC X(49) VALUE "S11E05Bride of Reanimator".
+               03 FILLER PIC X(49) VALUE "S11E06Next of Kin".
+               03 FILLER PIC X(49) VALUE "S11E07Ginger Snaps".
+               03 FILLER PIC X(49) VALUE "S11E08Fried Barry".
+               03 FILLER PIC X(49) VALUE "S11E09Mandy".
+               03 FILLER PIC X(49) VALUE "S11E10Dead and Buried".
+               03 FILLER PIC X(49) VALUE "S11E11Maniac Cop".
+               03 FILLER PIC X(49) VALUE "S11E12Maniac Cop 2".
+               03 FILLER PIC X(49) VALUE "S11E13Train to Busan".
+               03 FILLER PIC X(49) VALUE "S11E14Spookies".
+               03 FILLER PIC X(49) VALUE "S11E15SledgeHammer".
+               03 FILLER PIC X(49) VALUE "S11E16Things".
+               03 FILLER PIC X(49) VALUE "S11E17EvilSpeak".
+               03 FILLER PIC X(49) VALUE "S11E18Day of the Beast".
+               03 FILLER PIC X(49) VALUE "S11E19Little Shop of Horrors".
                03 FILLER PIC X(49) VALUE 
-                           "s11e20Humanoids from the Deep".
+                           "S11E20Humanoids from the Deep".
                02 JbobNames REDEFINES EpisodeNames.
                 03 JoeBob                  OCCURS 91 TIMES
                                            ASCENDING KEY IS JSeep
@@ -386,7 +386,7 @@
                                FOR LEADING SPACES                 
            COMPUTE StrgSize = (70 - CharCount)
                MOVE InString (1:Strgsize) TO SeEp
-           UNSTRING SeEp DELIMITED BY 'e'
+           UNSTRING SeEp DELIMITED BY 'e' or 'E'
                INTO ShowSeason
            MOVE ShowSeason(2 : ) TO SeasonNum
            SET Sidx TO 1
@@ -396,7 +396,7 @@
            END-SEARCH
            DISPLAY Seep, JSeep(1)
            SEARCH ALL JoeBob
-               WHEN JSeep(Jidx) = Seep
+               WHEN JSeep(Jidx) = FUNCTION UPPER-CASE(Seep)
                MOVE JName(jidx) TO HoldJName
            END-SEARCH
            DISPLAY "Joebob Name: " HoldJname
@@ -411,6 +411,7 @@
                            , SeEp, " - ", HoldJname(1 : JstrgSize), 
                            '.mkv"'
                INTO JoebobT
+           DISPLAY HoldJname "!"
                MOVE HoldJName TO PrnTitle
            DISPLAY "Full Show Path: " JoebobPathRec.
            CALL "SYSTEM" USING JoebobPathRec
