@@ -26,8 +26,8 @@
            WORKING-STORAGE SECTION.
       *    COPY RandMovie.cpy
            01 SuggestionTable                  IS GLOBAL.
-               02 SuggestionValues         OCCURS 5 TIMES.
-                   03 SMovieName               PIC X(50).
+               02 SuggestionValues         OCCURS 6 TIMES.
+                   03 SMovieName               PIC X(60).
                    03 SComment                 PIC X(60).
                
            01 SeasonTable.
@@ -262,7 +262,12 @@
                02 HoldOut                  PIC X(150).
            01 Whatcheck.
                02 FILLER               PIC X(13) VALUE "Now Playing: ".
-               02 Playing              PIC X(53).    
+               02 Playing              PIC X(53).
+           01 SuggDecade               PIC X(3).
+               88  DecadeSugg          VALUE "00s", "10s", "20s", "30s",
+                                      "40s", "50s", "60s", "70s", "80s",
+                                       "90s".
+               88  RegSugg              VALUE SPACES.                        
            01 TallyMovie                   PIC X(80).  
            PROCEDURE DIVISION.
            OPEN INPUT ReadFile
@@ -295,6 +300,7 @@
            END-CALL
            CLOSE ReadFile
            STOP RUN.
+
            RollDice.
       *>   Pull apart the text after roll command  to create the amount
       *>     of times the dice will be rolled and the size of the rolled
@@ -450,12 +456,27 @@
            CLOSE RequestFile, WriteFile.
 
            SuggestMovie.
-           DISPLAY "InSugg"
+      *    DISPLAY "InSugg " ReadRec
+           INSPECT FUNCTION REVERSE(ReadRec) TALLYING Charcount
+                               FOR LEADING SPACES                             
+      *    DISPLAY "CharCount: " ReadRec(6 : 75 - CharCount)
+           
            COMPUTE MovieRand = FUNCTION RANDOM * (MovieMod - 
                                MinNum + 1) + MinNum
            ADD 1 TO Seed
+           MOVE ReadRec(6 : 75 - CharCount) TO SuggDecade
+           IF DecadeSugg
+      *    DISPLAY "IN DECADE SUGG: " SuggDecade
+
+             CALL "SuggestMovieDecade" USING MovieRand,  SuggDecade,
+                                       SuggestionTable                     
+             END-CALL
+           END-IF
+           IF RegSugg
            CALL "SuggestMovie" USING MovieRand, SuggestionTable
            END-CALL
+           END-IF
+      *    DISPLAY "BACK IN MAIN"
            OPEN OUTPUT WriteFile
            PERFORM VARYING IDX FROM 1 BY 1 UNTIL Idx > 5
            DISPLAY SuggestionValues(Idx)
