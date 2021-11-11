@@ -1322,7 +1322,7 @@
            01 MovieRand            PIC 9(3).
            01 SuggestionTable.             
                02 SuggestionValues         OCCURS 5 TIMES.
-                   03 SMovieName               PIC X(50).
+                   03 SMovieName               PIC X(60).
                    03 SComment                 PIC X(60).
            PROCEDURE DIVISION USING  MovieRand, 
                                        SuggestionTable.
