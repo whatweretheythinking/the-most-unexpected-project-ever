@@ -9,6 +9,8 @@
                    ORGANIZATION IS LINE SEQUENTIAL.
                SELECT RequestFile ASSIGN TO "MovieRequests.txt"
                    ORGANIZATION IS LINE SEQUENTIAL.
+      *    A seperate file for the program to read that isn't thrown off
+      *    by a sugg request        
                SELECT WhatFile ASSIGN TO "WhatsPlaying.txt"
                    ORGANIZATION IS LINE SEQUENTIAL.    
            DATA DIVISION.
@@ -24,12 +26,14 @@
            FD WhatFile.
                01 WhatString               PIC X(100).    
            WORKING-STORAGE SECTION.
-      *    COPY RandMovie.cpy
+
            01 SuggestionTable                  IS GLOBAL.
                02 SuggestionValues         OCCURS 6 TIMES.
                    03 SMovieName               PIC X(60).
                    03 SComment                 PIC X(60).
-               
+
+      *    Conversion table for seaons to make the discord command 
+      *    easier for the users   
            01 SeasonTable.
                02 SeasonValues.
                    03 FILLER       PIC X(18) VALUE "Season 01Season 02".
@@ -50,7 +54,10 @@
                02 SeasonNames      REDEFINES SeasonValues.
                    03 Season       PIC X(9) OCCURS 30 TIMES
                                             INDEXED BY Sidx.
-                
+
+      *    I wanted to keep the file names intact on my actual system
+      *    so this table converts the names from the standard discord
+      *    command without me having to rename stuff on computer.  
            01 JoeBobTable.
                02 EpisodeNames.
                03 FILLER PIC X(49) VALUE "S01E01Tourist Trap".
@@ -162,20 +169,20 @@
                                            INDEXED BY JIdx.
                    04 JSeep                PIC X(6).
                    04 JName                PIC X(43).
-           01 PrnDice.
-               02 PrnD6                PIC 9.
+
            01 Triggers                 PIC X(3).
            01 PrintRandom.
-               02 PrnRand                   PIC X(13) VALUE 
+               02 FILLER                   PIC X(13) VALUE 
                "Now Playing: ".
                02 FILLER                    PIC XX VALUE '`"'.
                02 PrnRandMovie              PIC X(45).
                02 FILLER                    PIC X VALUE "`".
+
            01 PrintComment.
                02 FILLER               PIC X VALUE "`".
                02 PrnComment                 PIC X(62).
                02 FILLER               PIC X VALUE "`".
-           01 Multiplier               PIC 99 Value 0 Occurs 12 TIMES.
+
            01 PrnMovieName.
                02 Filler               PIC X(13) VALUE "Now Playing: ".
                02 FILLER               PIC X VALUE '`'.
@@ -189,10 +196,10 @@
                02 FILLER               PIC X VALUE '`'.
            01 PrnWant2.
                02  FILLER              PIC X(24) VALUE "Added to list".
-
+           01 PrnError                 PIC X(70).
            01 Counters.
                02 Idx                      PIC 999.
-               02 Tidx                     PIC 999.
+
            01 PrnSuggestion.
                02 FILLER               PIC X(3) VALUE "`".
                02 PrnSName             PIC X(50).
@@ -223,41 +230,29 @@
                02 FILLER               PIC X Value SPACE.
                02 FILLER               PIC X VALUE "&".    
            01 ShowUnStr.
-               02 Command             PIC X(4).
                02 ShowSeason           PIC X(3).
                02 FullSeason           PIC X(9).
-               02 ShowExtension        PIC X(3).
-           01 DiceUnStr.    
-               02 DMultiplier          PIC 999.
-               02 D                    PIC X.
-               02 RollNum              PIC 999.
-           01 Dice.
-               02 DiceR                    PIC 9(3).
-               02 TotalRoll                PIC 9(4)    VALUE ZERO.
+      *    Basic randomizer for random file   
            01 RandomMods.
-               02 RollMod                  PIC 999 VALUE 0.
+               02 RandNum                  PIC 9(3).
+               02 RollMod                  PIC 9(3) VALUE 0.
                02 MinNum                   PIC 9 VALUE 1.
                02 MovieMod                 PIC 9(3) VALUE 322.
                02 MovieRand                PIC 9(3).
-           01 RNumber                      PIC 99.
            01 StringStuff.    
                02 CharCount                    PIC 99.
                02 StrgSize                     PIC 99.
                02 JStrgSize                    PIC 99. 
-               02 UnstrPtr                     PIC 99.
                02 MoviePath                PIC X(40).
                02 MovieName                PIC X(35).
            01 CurrentDate.
                02 FILLER                      PIC X(12).
                02 Seed                        PIC 9999.
-           01 PrnData.
-               02 PrnRoll                  PIC ZZZ9.
+
            01 Holds.
-               02 HoldDelim                    PIC X(2).  
                02 HoldShowTitle            PIC X(50).
                02 SeEp                     PIC X(6).
                02 SeasonNum                PIC 99. 
-               02 PrnJName                 PIC X(43).
                02 HoldJname                PIC X(30).
                02 HoldOut                  PIC X(150).
            01 Whatcheck.
@@ -271,18 +266,17 @@
            01 TallyMovie                   PIC X(80).  
            PROCEDURE DIVISION.
            OPEN INPUT ReadFile
+      *    Creates seed for random number generation
            MOVE FUNCTION CURRENT-DATE TO CurrentDate
-           COMPUTE DiceR = FUNCTION RANDOM(Seed)
-           DISPLAY "Main Seed: " Seed
+           COMPUTE RandNum = FUNCTION RANDOM(Seed)
+      *    Reads the file written by the JS that has trigger command
            READ ReadFile
-           DISPLAY readrec(1 : 4)
+      *    Evalates the command while ignoring requested file  
            EVALUATE FUNCTION UPPER-CASE(ReadRec(1 : 4))
            WHEN "RAND"
                    PERFORM SelectRandomMovie
            WHEN "SUGG"
                PERFORM SuggestMovie        
-           WHEN "ROLL"
-                   PERFORM RollDice
            WHEN "FILM"
                PERFORM SelectMovie
            WHEN "SHOW"
@@ -294,37 +288,19 @@
            WHEN "WHAT"
                PERFORM WhatCommand
            END-EVALUATE
-      *    Tallys the moveis that have been selected
+      *    Tallys the movies that have been selected
            MOVE FullMovie TO TallyMovie
            CALL 'MovieTally' USING TallyMovie
            END-CALL
            CLOSE ReadFile
+           DISPLAY "POST CLOSE"
            STOP RUN.
 
-           RollDice.
-      *>   Pull apart the text after roll command  to create the amount
-      *>     of times the dice will be rolled and the size of the rolled
-      *>     dice.  
-           UNSTRING FUNCTION UPPER-CASE(Instring) DELIMITED BY 'D' INTO
-               DMultiplier, RollNum
-      *>         DISPLAY DMultiplier ' ' RollNum
-           MOVE RollNum TO RollMod
-           PERFORM DMultiplier TIMES
-           COMPUTE DiceR = FUNCTION RANDOM * (RollMod - MinNum + 1) +
-               MinNum
-           ADD 1 TO Seed    
-           Add DiceR TO TotalRoll
-               END-PERFORM
-           MOVE TotalRoll TO PrnRoll
-           WRITE OutString FROM PrnRoll.
-           
            SelectMovie.
            PERFORM GetMovieName
            Call "SYSTEM" USING MoviePathRec
            END-Call
-           DISPLAY FullMovie
            MOVE FullMovie TO PrnTitle
-           DISPLAY Prntitle
            OPEN OUTPUT WriteFile, WhatFile
            WRITE Outstring FROM PrnMovieName
            WRITE WhatString FROM PrnMovieName
@@ -338,26 +314,20 @@
            COMPUTE StrgSize = (70 - CharCount)
            
            UNSTRING Instring
-               INTO MoviePath
-           DISPLAY "Movie Path: " Moviepath '!'    
-           STRING 
-           MoviePath(1 :StrgSize)
+               INTO MoviePath   
+           STRING MoviePath(1 :StrgSize)
            INTO FullMovie
            END-STRING
-           DISPLAY "FullMovie: " FullMovie  
            DISPLAY MoviePathRec.
            
            SelectShow.
-               DISPLAY "Instring: " Instring
       *        Seperating show name from episode request
            INSPECT FUNCTION REVERSE(InString) TALLYING CharCount
                                FOR LEADING SPACES                 
            COMPUTE StrgSize = (70 - CharCount)
-           DISPLAY "ShowName: " InString (1 :Strgsize - 7) '!'
                MOVE InString (1 : Strgsize - 7) TO HoldShowTitle.
       *    Expand Season into full text    
-           MOVE Instring(Strgsize - 5: 6) TO SeEp 
-               DISPLAY "Seep: " SeEp         
+           MOVE Instring(Strgsize - 5: 6) TO SeEp     
            UNSTRING SeEp DELIMITED BY 'e'
                Into ShowSeason
            MOVE ShowSeason(2 : ) TO SeasonNum
@@ -428,14 +398,14 @@
            Close WriteFile, WhatFile.
 
            SelectRandomMovie.
-           DISPLAY "In Random"
+      *    Starts a random movie
            COMPUTE MovieRand = FUNCTION RANDOM * (MovieMod - 
                                MinNum + 1) + MinNum
            ADD 1 TO Seed
            CALL "CobbotRandomMovie" USING  Seed, MovieRand, FullMovie,
-                                           PrnComment                            
+                                           PrnComment   
+           END-CALL                                                         
            MOVE FullMovie TO PrnRandMovie
-           DISPLAY "path rec:" MoviePathRec
           
            CALL "SYSTEM" USING MoviePathRec
            END-CALL
@@ -456,18 +426,15 @@
            CLOSE RequestFile, WriteFile.
 
            SuggestMovie.
-      *    DISPLAY "InSugg " ReadRec
+           OPEN OUTPUT WriteFile
            INSPECT FUNCTION REVERSE(ReadRec) TALLYING Charcount
                                FOR LEADING SPACES                             
-      *    DISPLAY "CharCount: " ReadRec(6 : 75 - CharCount)
-           
            COMPUTE MovieRand = FUNCTION RANDOM * (MovieMod - 
                                MinNum + 1) + MinNum
            ADD 1 TO Seed
            MOVE ReadRec(6 : 75 - CharCount) TO SuggDecade
+           DISPLAY Suggdecade
            IF DecadeSugg
-      *    DISPLAY "IN DECADE SUGG: " SuggDecade
-
              CALL "SuggestMovieDecade" USING MovieRand,  SuggDecade,
                                        SuggestionTable                     
              END-CALL
@@ -476,14 +443,10 @@
            CALL "SuggestMovie" USING MovieRand, SuggestionTable
            END-CALL
            END-IF
-      *    DISPLAY "BACK IN MAIN"
-           OPEN OUTPUT WriteFile
            PERFORM VARYING IDX FROM 1 BY 1 UNTIL Idx > 5
            DISPLAY SuggestionValues(Idx)
            MOVE SMovieName(idx) TO PrnSName
            MOVE SComment(idx) TO PrnScomment
-      *    WRITE OutString FROM PrintRandom
-      *    WRITE OutString FROM PrintComment
            WRITE OutString FROM PrnSuggestion
            END-PERFORM
            CLOSE WriteFile.
