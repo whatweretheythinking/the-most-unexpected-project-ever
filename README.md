@@ -1,5 +1,6 @@
 # Learning Cobol by building a discord bot
-Discord bot written entirely in Cobol.  For science.
+Discord bot written entirely* in Cobol.  For science.
+note: entirely is a WIP
 
 Eventually, these commands will execute in a remote shell via a Discord bot built entirely in Cobol.
 
